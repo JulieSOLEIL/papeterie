@@ -1,0 +1,46 @@
+/* Fichier CSS de l'application TP_Papeterie */
+* {
+    margin:0px;
+    padding:0px;
+}
+header {
+    margin-top: 5px;
+    margin-left:5%;
+    padding: 5px;
+    border-bottom: solid thin;	
+}
+main {
+    margin:5px 5%;
+}
+.footer-bottom a{color:#bbb}
+.foot_menu{float:right}
+.foot_menu ul{margin:0}
+.foot_menu ul li{float:left;padding-left:15px;list-style:none}
+.foot_menu ul li:first-child{padding-left:0}
+.foot_menu ul li a:hover{text-decoration:underline}
+
+.copyright {
+    color:#333;
+    text-decoration:none
+}
+table {
+    width:90%;
+    border:none;
+    border-collapse:collapse;
+}
+#adresse,#commande,#ligneProduit {
+    margin-left:10%;	
+}
+#adresse th {
+    text-align:left;	
+}
+#commande th, #commande td, #ligneProduit th, #ligneProduit td {
+    border:solid thin;
+    padding:3px 10px;
+}
+.prix::after {
+    content: " €";
+}
+.wrap {
+    min-height: calc(100vh - 40px);
+}
