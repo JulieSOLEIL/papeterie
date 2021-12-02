@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand active"<?php if ($page == 'Accueil'){ echo ' active';} ?> href="index.php">Accueil</a>
+    <a class="navbar-brand active"<?php if ($page == 'Accueil'){ echo ' active';} ?> href="/index.php">Accueil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,14 +9,9 @@
             <li class="nav-item dropdown <?php if (substr($page, 0, 5)== 'prod_') { echo 'active';} ?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Les Produits</a>
                 <div class="dropdown-menu bg-secondary">
-                    <a class="dropdown-item" href="prod_papeterie.php" <?php if ($page == 'prod_papeterie') { echo 'style="display:none;"';} ?>>Papeterie</a>
-
-                    <a <?php if ($page == 'prod_ecriture') {
-                            echo 'style="display: none;"';
-                        } ?> class="dropdown-item" href="prod_ecriture.php">Ecriture</a>
-                    <a <?php if ($page == 'Accessoires') {
-                            echo 'style="display: none;"';
-                        } ?> class="dropdown-item" href="#">Accessoires</a>
+                    <a <?php if ($page == 'prod_papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="./pages/prod_papeterie.php">Papeterie</a>
+                    <a <?php if ($page == 'prod_ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="prod_ecriture.php">Ecriture</a>
+                    <a <?php if ($page == 'Accessoires') { echo 'style="display: none;"';} ?> class="dropdown-item" href="#">Accessoires</a>
                 </div>
             </li>
             <li class="nav-item">

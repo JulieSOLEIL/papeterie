@@ -16,17 +16,17 @@
             210_00_TP_Papeterie DWWM
         </title>
         <!-- Bootstrap core CSS -->
-        <link href="dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="css/papeterie.css" rel="stylesheet" type="text/css"/>
-        <script src="dist/js/jquery-3.4.1.js"></script>
-        <script src="dist/js/bootstrap.js"></script>
+        <link href="/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/papeterie.css" rel="stylesheet" type="text/css"/>
+        <script src="/dist/js/jquery-3.4.1.js"></script>
+        <script src="/dist/js/bootstrap.js"></script>
 
     </head>
     <body>
         <div class='wrap'>
             <?php
-            include './header.php';
-            include './nav.php';
+            include './pages/header.php';
+            include './pages/nav.php';
             ?>
             
             <main class="container">
@@ -34,7 +34,7 @@
             </main>
         </div>
         <?php
-        include './footer.php';
+        include './pages/footer.php';
         ?>
     </body>
 </html>
