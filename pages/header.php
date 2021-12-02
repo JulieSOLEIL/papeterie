@@ -40,7 +40,7 @@ if (isset($_SESSION['nom'])){
             // if (!isset($_SESSION['login'])) {
                 echo '<span>Déjà client : <a href="/securite/login.php" class="btn btn-primary btn-sm">Identifiez-vous</a></span>
                     <br><br>
-                    <span><a href="register.php" class="btn btn-secondary btn-sm">Créer un compte</a></span>';
+                    <span><a href="/client/creerCompte.php" class="btn btn-secondary btn-sm">Créer un compte</a></span>';
             } else {
                 // echo '<span><a href="deconnect.php" class="btn btn-primary btn-sm">déconnexion</a></span>';
                    echo '<span>Bienvenue '.$user.'</span><br><br><span><a href="/securite/deconnect.php" class="btn btn-primary btn-sm">déconnexion</a></span>';

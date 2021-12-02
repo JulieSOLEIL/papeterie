@@ -11,11 +11,8 @@
 
         // je crée un objet PDO avec 'new PDO'
         $refPdo = new PDO($db_dsn, $db_user, $db_psw); 
-        //var_dump($refPdo);
 
-        // déclare et récupère login et psw
-        $login = $_POST['login'];
-        $psw = $_POST['psw'];
+
         // les filter_input permettent de filtrer login et mdp, pour mieux sécuriser le login 
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_EMAIL);
         $psw = filter_input(INPUT_POST,'psw',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -41,15 +38,16 @@
             $mdp = $psw;
 
                 if ($user['psw'] === $psw) {
-                // si connecter alors mémoriser en session le login et ...
+                    //if (password_verify($psw, $user['psw'])) {
+                    // si connecter alors mémoriser en session le login et ...
 
-                $_SESSION['nom'] = $user['nom'];  
-                $_SESSION['role'] = $user['role'];  
-                header('Location: /index.php');
-                exit();
-            } else { // mot de passe incorrect
+                    $_SESSION['nom'] = $user['nom'];  
+                    $_SESSION['role'] = $user['role'];  
+                    header('Location: /index.php');
+                    exit();
+                } else { // mot de passe incorrect
                 $erreur = 'Mot de passe erroné';
-            } 
+                } 
             } else {  // login non trouvé en base
                 $erreur = 'login erroné';
                 echo $login = ''; 
@@ -65,53 +63,53 @@
  * Fichier principal de l'application TP_Papeterie
  -->
 <html>
-    <head>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-        <title>
-            210_00_TP_Papeterie DWWM
-        </title>
-        <!-- Bootstrap core CSS -->
-        <link href="/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-        <link href="/css/papeterie.css" rel="stylesheet" type="text/css"/>
-        <script src="/dist/js/jquery-3.4.1.js"></script>
-        <script src="/dist/js/bootstrap.js"></script>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>
+    210_00_TP_Papeterie DWWM
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/papeterie.css" rel="stylesheet" type="text/css"/>
+    <script src="/dist/js/jquery-3.4.1.js"></script>
+    <script src="/dist/js/bootstrap.js"></script>
 
-    </head>
-    <body>
-        <div class='wrap'>
-            <?php
-            include '../pages/header.php';
-            include '../pages/nav.php';
-            ?>
+</head>
+<body>
+    <div class='wrap'>
+        <?php
+        include '../pages/header.php';
+        include '../pages/nav.php';
+        ?>
             
-                <main class="container">
-        <p class="h2">Identifiez vous</p>
-        <form method="post" action="login.php">
-            <div class="mb-3">
+            <main class="container">
+                <p class="h2">Identifiez vous</p>
+            <form method="post" action="login.php">
+                <div class="mb-3">
                 <label for="id_login" class="form-label">Votre login</label>
                 <!-- cas particulier, on peut écrire sous une autre forme: php echo égale à qque chose, on peut l'écrire sous forme suivante -->
                 <input type="text" value="<?= $login; ?>" name="login" class="form-control" id="id_login" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
+                </div>
+                <div class="mb-3">
                 <label for="id_psw" class="form-label">Votre mot de passe</label>
                 <input type="password" name="psw" class="form-control" id="id_psw">
-            </div>
-            <div>
-            <?php
-            // ici, on fait un boolean, si $erreur est vide = true, alors...
-            if ($erreur) {
-               echo '<div class="alert alert-danger" role="alert">';
-               echo $erreur;
-               echo '</div>';
-            };
-            ?>
-            <button type="submit" class="btn btn-primary">Valider</button>
-        </form>
-    </main>
-        </div>
+                </div>
+                <div>
+                <?php
+                // ici, on fait un boolean, si $erreur est vide = true, alors...
+                if ($erreur) {
+                    echo '<div class="alert alert-danger" role="alert">';
+                    echo $erreur;
+                    echo '</div>';
+                };
+                ?>
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
+        </main>
+    </div>
 
-        <?php
-        include '../pages/footer.php';
-        ?>
-    </body>
+<?php
+include '../pages/footer.php';
+?>
+</body>
 </html>
