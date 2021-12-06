@@ -6,11 +6,11 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <!-- Dropdown -->
-            <li class="nav-item dropdown <?php if (substr($page, 0, 5)== 'prod_') { echo 'active';} ?>">
+            <li class="nav-item dropdown <?php if ($page== 'liste_article') { echo 'active';} ?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Les Produits</a>
                 <div class="dropdown-menu bg-secondary">
-                    <a <?php if ($page == 'prod_papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="./pages/prod_papeterie.php">Papeterie</a>
-                    <a <?php if ($page == 'prod_ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="prod_ecriture.php">Ecriture</a>
+                    <a <?php if ($page == 'prod_papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="/pages/liste_article.php?cat=papeterie">Papeterie</a>
+                    <a <?php if ($page == 'prod_ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="/pages/liste_article.php?cat=ecriture">Ecriture</a>
                     <a <?php if ($page == 'Accessoires') { echo 'style="display: none;"';} ?> class="dropdown-item" href="#">Accessoires</a>
                 </div>
             </li>

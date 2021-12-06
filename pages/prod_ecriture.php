@@ -43,27 +43,29 @@
                             <th class="text-center w-10">QUANTITE</th>
                             <th class="text-center w-10">AJOUTER<br>AU PANIER</th>
                         </tr>
-                        <tr>
-                            <td class="text-center">0019</td>
-                            <td>Stylos</td>
-                            <td class="prix text-center">1.50</td>
-                            <td class="text-center"><input type="number" value="0" min="0" /></td>
-                            <td class="text-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">0010</td>
-                            <td>Gommes</td>
-                            <td class="prix text-center">0.45</td>
-                            <td class="text-center"><input type="number" value="0" min="0" /></td>
-                            <td class="text-center"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">0003</td>
-                            <td>Boîte de 10 feutres</td>
-                            <td class="prix text-center">4.50</td>
-                            <td class="text-center"><input type="number" value="0" min="0" /></td>
-                            <td class="text-center"></td>
-                        </tr>
+
+                        <?php
+                        
+                            // je sécurise les datas dans un autre fichier
+                            require '../securite/dsn_secure.php';
+
+                            // je crée un objet PDO avec 'new PDO'
+                            $refPdo = new PDO($db_dsn, $db_user, $db_psw); 
+                            $sql = 'SELECT * FROM articles NATURAL JOIN categories where libelle cat = cat';
+                            $stat_article = $refPdo->prepare($sql);
+                            $cat = 'prod_ecriture';
+                            $stat_article->bindParam(':cat', $cat, PDO::PARAM_STR);
+                            $articles = $stat_article->fetchAll(PDO::FETCH_ASSOC);
+                            foreach($articles as $article) {
+                                echo '<tr>';
+                                echo '<td class="text-center">'.$article['code_art'].'</td>';
+                                echo '<td>'.$article['libelle_art'].'</td>';
+                                echo '<td class="prix text-center">'.$article['prix_ht'].'</td>';
+                                echo '<td class="text-center"><input type="number" value="0" min="0" /></td>';
+                                echo '<td class="text-center"></td>';
+                                echo '</tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </main>

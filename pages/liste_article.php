@@ -1,6 +1,9 @@
 <?php
-    $page = 'prod_papeterie';
-?>   
+    // session_start();
+    require '../base/dao.php';
+    $page = 'liste_article';
+    $cat = filter_input(INPUT_GET ,'cat' ,FILTER_SANITIZE_STRING);
+?>    
 <!DOCTYPE html>
 <!--
  * @author Didier Bonneau
@@ -25,16 +28,16 @@
         <script src="/dist/js/jquery-3.4.1.js"></script>
         <script src="/dist/js/bootstrap.js"></script>
     </head>
-     
+    
     <body>
         <div class='wrap'>
         <?php
-            include '../pages/header.php';
+            include './header.php';
             include './nav.php';
             ?>
-            
             <main class="container">
-                <h2>Liste des produits de la catégorie papeterie</h2>
+                <h2>Liste des produits de la catégorie <?=$cat;?></h2>
+                <?php var_dump($cat)?>
                 <table class="table table-bordered">
                     <tbody id="ligne">
                         <tr>
@@ -44,7 +47,7 @@
                             <th class="text-center w-10">QUANTITE</th>
                             <th class="text-center w-10">AJOUTER<br>AU PANIER</th>
                         </tr>
-                        
+
                         <?php
                         
                             // je sécurise les datas dans un autre fichier
@@ -52,9 +55,8 @@
 
                             // je crée un objet PDO avec 'new PDO'
                             $refPdo = new PDO($db_dsn, $db_user, $db_psw); 
-                            $sql = 'SELECT * FROM articles NATURAL JOIN categories where libelle cat = cat';
+                            $sql = 'SELECT * FROM articles NATURAL JOIN categorie where libelle_cat = cat;';
                             $stat_article = $refPdo->prepare($sql);
-                            $cat = 'prod_papeterie';
                             $stat_article->bindParam(':cat', $cat, PDO::PARAM_STR);
                             $articles = $stat_article->fetchAll(PDO::FETCH_ASSOC);
                             foreach($articles as $article) {

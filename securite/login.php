@@ -4,55 +4,35 @@
     $erreur = '';
     $login = '';
     $methode = $_SERVER['REQUEST_METHOD'];
+   
 
     if ($methode === 'POST'){
            // je sécurise les datas dans un autre fichier
-        require 'dsn_secure.php';
-
-        // je crée un objet PDO avec 'new PDO'
-        $refPdo = new PDO($db_dsn, $db_user, $db_psw); 
-
-
+        require '../base/dao.php';
         // les filter_input permettent de filtrer login et mdp, pour mieux sécuriser le login 
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_EMAIL);
         $psw = filter_input(INPUT_POST,'psw',FILTER_SANITIZE_SPECIAL_CHARS);
+        $user = getUserByLogin($login);
 
-        //requête trouver le login
-        // $sql = 'SELECT * FROM users WHERE login =\''.$login.'\';';
-        $sql = 'SELECT * FROM users WHERE login=:ident';
-        $stat_user = $refPdo->prepare($sql);
-        $stat_user->bindParam(':ident', $login, PDO::PARAM_STR);
-        $stat_user->execute();
-        //var_dump($sql)
-        // die(); permet de stopper la lecture du php avec 'die'
-
-        //envoi de la requête, un PDO Statement avec 'query'
-        // $stat_user = $refPdo->query($sql);
-        // var_dump($stat_user->fetch(PDO::FETCH_ASSOC));
+        if ($user) {
 
         //rowCount : retourne nb d'une colonne
-            if ($stat_user->rowCount() == 1){
-            //comparer le $psw avec mdp de la database
-            $user = $stat_user->fetch(PDO::FETCH_ASSOC);
+                if (password_verify($psw, $user['psw'])) {
+                        //if (password_verify($psw, $user['psw'])) {
+                        // si connecter alors mémoriser en session le login et ...
 
-            $mdp = $psw;
-
-                if ($user['psw'] === $psw) {
-                    //if (password_verify($psw, $user['psw'])) {
-                    // si connecter alors mémoriser en session le login et ...
-
-                    $_SESSION['nom'] = $user['nom'];  
-                    $_SESSION['role'] = $user['role'];  
-                    header('Location: /index.php');
-                    exit();
+                        $_SESSION['nom'] = $user['nom'];  
+                        $_SESSION['role'] = $user['role'];  
+                        header('Location: ../index.php');
+                        exit();                
                 } else { // mot de passe incorrect
                 $erreur = 'Mot de passe erroné';
                 } 
-            } else {  // login non trouvé en base
-                $erreur = 'login erroné';
-                echo $login = ''; 
-                // si login incorrect, on vide input
-            }
+        } else {  // login non trouvé en base
+            $erreur = 'login erroné';
+            echo $login = ''; 
+            // si login incorrect, on vide input
+        }
 }
 ?>
 <!DOCTYPE html>

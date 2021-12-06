@@ -1,5 +1,6 @@
 <?php
-    $page ='bonnes_affaires';
+    session_start();
+    $page ='error';
 ?>
 <!DOCTYPE html>
 <!--
@@ -29,7 +30,7 @@
             ?>
             
             <main class="container">
-                    <p class="h2">Salut, tu recherches quel bail?</p>
+                    <p class="h2" style="color: red; font-weight:500;">Attention ! Il y a un souci de connexion !!!</p>
             </main>
         </div>
         <?php
