@@ -12,6 +12,8 @@
         // les filter_input permettent de filtrer login et mdp, pour mieux sécuriser le login 
         $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_EMAIL);
         $psw = filter_input(INPUT_POST,'psw',FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        // interroger data base avec login
         $user = getUserByLogin($login);
 
         if ($user) {

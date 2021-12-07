@@ -1,13 +1,14 @@
 <?php
 
 // je sécurise les datas dans un autre fichier
-require '../securite/dsn_secure.php';
+require 'securite/dsn_secure.php';  
 
 // je crée un objet PDO avec 'new PDO'
-try{
+try{  
 $refPdo = new PDO($db_dsn, $db_user, $db_psw); 
+
 } catch (PDOException $err){
-    header('Location: error.php');
+    header('Location:error.php');
     exit();
 }
     function getAllArticleByCategorie($categ) {

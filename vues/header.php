@@ -38,12 +38,12 @@ if (isset($_SESSION['nom'])){
                 if ($user === '') {
             // if (!isset($_SESSION['nom'])){
             // if (!isset($_SESSION['login'])) {
-                echo '<span>Déjà client : <a href="/securite/login.php" class="btn btn-primary btn-sm">Identifiez-vous</a></span>
+                echo '<span>Déjà client : <a href="index.php?entite=user&action=login" class="btn btn-primary btn-sm">Identifiez-vous</a></span>
                     <br><br>
-                    <span><a href="/client/creerCompte.php" class="btn btn-secondary btn-sm">Créer un compte</a></span>';
+                    <span><a href="index.php?entite=user&action=newLogin" class="btn btn-secondary btn-sm">Créer un compte</a></span>';
             } else {
                 // echo '<span><a href="deconnect.php" class="btn btn-primary btn-sm">déconnexion</a></span>';
-                   echo '<span>Bienvenue '.$user.'</span><br><br><span><a href="/securite/deconnect.php" class="btn btn-primary btn-sm">déconnexion</a></span>';
+                   echo '<span>Bienvenue '.$user.'</span><br><br><span><a href="index.php?entite=user&action=deconnect" class="btn btn-primary btn-sm">déconnexion</a></span>';
             }
             ?>
             <br>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand active"<?php if ($page == 'Accueil'){ echo ' active';} ?> href="/index.php">Accueil</a>
+    <a class="navbar-brand active" href="/index.php">Accueil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,8 +9,8 @@
             <li class="nav-item dropdown <?php if ($page== 'liste_article') { echo 'active';} ?>">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Les Produits</a>
                 <div class="dropdown-menu bg-secondary">
-                    <a <?php if ($page == 'prod_papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="/pages/liste_article.php?cat=papeterie">Papeterie</a>
-                    <a <?php if ($page == 'prod_ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="/pages/liste_article.php?cat=ecriture">Ecriture</a>
+                    <a <?php if ($page == 'liste_article' && $cat == 'papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="index.php?entite=produit&action=liste&cat=papeterie">Papeterie</a>
+                    <a <?php if ($page == 'liste_article' && $cat == 'ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="/pages/liste_article.php?cat=ecriture">Ecriture</a>
                     <a <?php if ($page == 'Accessoires') { echo 'style="display: none;"';} ?> class="dropdown-item" href="#">Accessoires</a>
                 </div>
             </li>

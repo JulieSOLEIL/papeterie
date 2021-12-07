@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    $page ='error';
-?>
 <!DOCTYPE html>
 <!--
  * @author Didier Bonneau
@@ -23,17 +19,10 @@
 
     </head>
     <body>
-        <div class='wrap'>
-            <?php
-            include 'header.php';
-            include 'nav.php';
-            ?>
-            
-            <main class="container">
-                    <p class="h2" style="color: red; font-weight:500;">Attention ! Il y a un souci de connexion !!!</p>
-            </main>
-        </div>
         <?php
+        include 'header.php';
+        include 'nav.php';
+        include $vue.'.php';
         include 'footer.php';
         ?>
     </body>
