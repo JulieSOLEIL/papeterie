@@ -28,6 +28,4 @@ try {
     $vue = 'erreur';
 }
 
-
-
 include 'vues/template.php';

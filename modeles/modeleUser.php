@@ -1,6 +1,6 @@
 <?php
 
-require 'base/dao.php';
+require 'base/Dao.php';
 
 
 
@@ -16,7 +16,8 @@ function login(){
         $psw = filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_SPECIAL_CHARS);
 
         // interroger data base avec login
-        $user = getUserByLogin($login);
+        $dbDao = new Dao();
+        $user = $dbDao->getUserByLogin($login);
 
         if ($user) {
         //compare $psw avec mdp de la database
@@ -62,7 +63,8 @@ function register(){
         'role' => 'client'
     ];
 
-    setNewUser($client);
+    $dbDao = new Dao();
+    $dbDao->setNewUser($client);
     // après validation, on va initialiser l'inscription en logguant le newClient
     $_SESSION['nom'] = $client['nom'];
     $_SESSION['role'] = $client['role'];

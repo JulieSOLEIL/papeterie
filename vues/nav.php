@@ -6,12 +6,12 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <!-- Dropdown -->
-            <li class="nav-item dropdown <?php if ($vue== 'liste_article') { echo 'active';} ?>">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Les Produits</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle <?php if ($page == 'liste_article') { echo 'active';} ?>" href="#" id="navbardrop" data-toggle="dropdown">Les Produits</a>
                 <div class="dropdown-menu bg-secondary">
-                    <a <?php if ($vue == 'liste_article' && $cat == 'papeterie') { echo 'style="display:none;"';} ?>class="dropdown-item" href="index.php?entite=produit&action=liste&cat=papeterie">Papeterie</a>
-                    <a <?php if ($vue == 'liste_article' && $cat == 'ecriture') { echo 'style="display: none;"';} ?> class="dropdown-item" href="index.php?entite=produit&action=liste&cat=ecriture">Ecriture</a>
-                    <a <?php if ($vue == 'Accessoires') { echo 'style="display: none;"';} ?> class="dropdown-item" href="#">Accessoires</a>
+                    <a class="dropdown-item<?php if ($vue == 'liste_article' && $cat == 'papeterie') { echo 'style="display:none;"';} ?>" href="index.php?entite=article&action=liste&cat=papeterie">Papeterie</a>
+                    <a class="dropdown-item<?php if ($vue == 'liste_article' && $cat == 'ecriture') { echo 'style="display: none;"';} ?>" href="index.php?entite=article&action=liste&cat=ecriture">Ecriture</a>
+                    <a class="dropdown-item<?php if ($vue == 'liste_article' && $cat == 'accessoires') { echo 'style="display: none;"';} ?>" href="#">Accessoires</a>
                 </div>
             </li>
             <li class="nav-item">

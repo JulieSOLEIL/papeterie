@@ -1,6 +1,5 @@
 <main class="container">
     <h2>Liste des produits de la catégorie <?= $cat; ?></h2>
-    <?php var_dump($cat) ?>
     <table class="table table-bordered">
         <tbody id="ligne">
             <tr>
@@ -13,20 +12,12 @@
 
             <?php
 
-            // je sécurise les datas dans un autre fichier
-            require '../securite/dsn_secure.php';
-
-            // je crée un objet PDO avec 'new PDO'
-            $refPdo = new PDO($db_dsn, $db_user, $db_psw);
-            $sql = 'SELECT * FROM articles NATURAL JOIN categorie where libelle_cat = cat;';
-            $stat_article = $refPdo->prepare($sql);
-            $stat_article->bindParam(':cat', $cat, PDO::PARAM_STR);
-            $articles = $stat_article->fetchAll(PDO::FETCH_ASSOC);
+            // $articles = getAllArticleByCategorie($cat);
             foreach ($articles as $article) {
                 echo '<tr>';
-                echo '<td class="text-center">' . $article['code_art'] . '</td>';
-                echo '<td>' . $article['libelle_art'] . '</td>';
-                echo '<td class="prix text-center">' . $article['prix_ht'] . '</td>';
+                echo '<td class="text-center">' . $article->getCodeArt() . '</td>';
+                echo '<td>' . $article->getLibelleArt(). '</td>';
+                echo '<td class="prix text-center">' . $article->getPrixHTArt(). '</td>';
                 echo '<td class="text-center"><input type="number" value="0" min="0" /></td>';
                 echo '<td class="text-center"></td>';
                 echo '</tr>';

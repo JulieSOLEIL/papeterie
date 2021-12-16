@@ -2,6 +2,8 @@
 require 'base/dao.php';
 
 function getAllArticle($categorie){
-    $arts = getAllArticleByCategorie($categorie);
+
+    $dbDao = new Dao();
+    $arts = $dbDao->getAllArticleByCategorie($categorie);
     return $arts;
 }
